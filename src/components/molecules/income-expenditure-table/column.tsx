@@ -1,15 +1,15 @@
-import { Button } from "@/components/ui/button"
-import { ColumnDef, RowSorting } from "@tanstack/react-table"
-import { ArrowUpDown, Delete, DeleteIcon, Edit, Trash } from "lucide-react"
-import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { db } from "@/firebase/firebase";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { ColumnDef } from "@tanstack/react-table";
+import { deleteDoc, doc } from "firebase/firestore";
+import { ArrowUpDown, Edit, Trash } from "lucide-react";
 import EditPaymentForm from "./edit-payment-form";
 
 
 export type Payment = {
   id: string
-  amount: number
+  value: number
   title: string
   description?: string
   type: "credit" | "debit"
@@ -86,7 +86,8 @@ export const columns: ColumnDef<Payment>[] = [
         </DialogTrigger>
 
         <DialogContent>
-          <EditPaymentForm title={row.original.title} description={row.original.description || ""} value={row.original.amount} type={row.original.type} ></EditPaymentForm>
+          <DialogTitle>Edit Payment</DialogTitle>
+          <EditPaymentForm title={row.original.title} description={row.original.description || ""} value={row.original.value} type={row.original.type} ></EditPaymentForm>
         </DialogContent>
     
       </Dialog>

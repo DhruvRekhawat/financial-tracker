@@ -1,5 +1,6 @@
 import Register from '@/components/molecules/Register'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Link } from 'react-router-dom'
 
 const RegisterPage = () => {
   return (
@@ -11,7 +12,9 @@ const RegisterPage = () => {
     <CardContent>
     <Register></Register>
     </CardContent>
-   
+    <CardFooter>
+      <Link to="/login" className='text-sm underline text-primary text-center w-full'>Already registered? Login here</Link>
+    </CardFooter>
    </Card>
    </div>
   )

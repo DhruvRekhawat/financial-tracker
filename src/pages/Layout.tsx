@@ -1,6 +1,7 @@
+import Navbar from '@/components/molecules/navbar'
 import { auth } from '@/firebase/firebase'
 import { useEffect } from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 
 import { useNavigate } from 'react-router-dom'
 
@@ -23,26 +24,12 @@ const Layout = () => {
 
   return (
     <>
-    <aside className='bg-purple-700 text-white w-1/3 max-w-[250px] h-screen fixed left-0 p-6'>
-        <ul className='flex flex-col gap-12 w-full'>
-           <Link to="/">
-            <li className='hover:bg-purple-300 hover:text-purple-800 transition-all h-12 rounded-md flex justify-start items-center px-2'>Home</li>
-           </Link>
-           <Link to="/savings">
-            <li className='hover:bg-purple-300 hover:text-purple-800 transition-all h-12 rounded-md flex justify-start items-center px-2'>Savings</li>
-           </Link>
-           <Link to="/monthly-expenditure">
-            <li className='hover:bg-purple-300 hover:text-purple-800 transition-all h-12 rounded-md flex justify-start items-center px-2'>Monthly Costs</li>
-           </Link>
-           <Link to="/settings">
-            <li className='hover:bg-purple-300 hover:text-purple-800 transition-all h-12 rounded-md flex justify-start items-center px-2'>Settings</li>
-           </Link>
-        </ul>
-    </aside>
-
-    <div className='absolute left-[250px] w-2/3 p-8'>
+    <main className='sm:grid grid-cols-[200px_minmax(900px,_1fr)] '>
+    <Navbar></Navbar>
+    <div className='w-full p-8 relative z-10'>
     <Outlet></Outlet>
     </div>
+    </main>
 
     </>
   )

@@ -1,5 +1,6 @@
 import Login from '@/components/molecules/Login'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Link } from 'react-router-dom'
 
 const LoginPage = () => {
 
@@ -15,7 +16,9 @@ const LoginPage = () => {
     <CardContent>
     <Login></Login>
     </CardContent>
-   
+    <CardFooter>
+      <Link to="/register" className='text-sm underline text-primary text-center w-full'>New here? Register Now</Link>
+    </CardFooter>
    </Card>
    </div>
   )

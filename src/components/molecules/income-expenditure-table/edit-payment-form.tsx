@@ -9,9 +9,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useState } from "react"
 import { useForm } from "react-hook-form"
-import { useNavigate } from "react-router-dom"
 import { z } from "zod"
 
 
@@ -32,32 +30,29 @@ const formSchema = z.object({
 
 const EditPaymentForm = ({title,description,value,type}:{title:string,description:string,value:number,type:string}) => {
 
-    const [isVisible,setIsVisible] = useState(false)
-
-    const navigate = useNavigate();
-
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-          title:"",
-          description:"",
-          value:0,
-          type:"Debit"
+          title:title,
+          description:description,
+          value:value,
+          type:type
         },
       })
 
       async function onSubmit(values: z.infer<typeof formSchema>) {
-            const docRef = doc(db, "payments", values.title);
-            const docSnap = await setDoc(docRef,{
-                title:title,
+            
+        
+        const docRef = doc(db, "payments", values.title);
+        await setDoc(docRef,{
+                title:values.title,
                 description:values.description,
                 value: values.value,
                 type:values.type,
             });
             
-            console.log(docSnap)
-
-            console.log(values)
+           console.log("Updated Successfulyy!")
+           console.log("paramValues:",title,description,value,type)
       }
 
 
@@ -72,7 +67,7 @@ const EditPaymentForm = ({title,description,value,type}:{title:string,descriptio
             <FormItem>
               <FormLabel>Title</FormLabel>
               <FormControl>
-                <Input placeholder="" {...field} className="" value={title}   readOnly />
+                <Input placeholder={title} {...field} className=""    readOnly />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -85,7 +80,7 @@ const EditPaymentForm = ({title,description,value,type}:{title:string,descriptio
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Input placeholder="" {...field} value={description} />
+                <Input placeholder={description} {...field}  />
               </FormControl>
 
               <FormMessage />
@@ -99,7 +94,7 @@ const EditPaymentForm = ({title,description,value,type}:{title:string,descriptio
             <FormItem>
               <FormLabel>Value</FormLabel>
               <FormControl>
-                <Input placeholder="" {...field} type="number" value={value} />
+                <Input {...field} type="number" />
               </FormControl>
               <FormMessage />
             </FormItem>

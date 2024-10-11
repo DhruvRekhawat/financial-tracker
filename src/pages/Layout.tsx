@@ -1,4 +1,4 @@
-import Navbar from '@/components/molecules/navbar'
+import Navbar from '../components/molecules/navbar'
 import { auth } from '@/firebase/firebase'
 import { useEffect } from 'react'
 import { Outlet } from 'react-router-dom'

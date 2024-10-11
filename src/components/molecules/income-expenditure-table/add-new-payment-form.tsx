@@ -9,9 +9,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useState } from "react"
 import { useForm } from "react-hook-form"
-import { useNavigate } from "react-router-dom"
 import { z } from "zod"
 
 
@@ -32,9 +30,6 @@ const formSchema = z.object({
 
 const IncomeExpenditureForm = () => {
 
-    const [isVisible,setIsVisible] = useState(false)
-
-    const navigate = useNavigate();
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
